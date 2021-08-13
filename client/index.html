@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test socket</title>
+  <style>
+    .log {
+      width: 500px;
+      height: 500px;
+      background-color: black;
+      color: aliceblue;
+      margin: auto;
+      padding: 5px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="row">
+    <input type="text" id="textMessage">
+    <input type="button" id="btnSend" value="Send">
+  </div>
+  <div class="log" id="log"></div> -->
+
+  <script type="text/javascript">
+    var socket = new WebSocket('ws://127.0.0.1:3002/');
+    socket.onmessage = function (msg) {
+      console.log(msg);
+    }
+    socket.onopen = function (e) {
+      socket.onerror = function (err) {
+        console.log(e);
+      }
+      socket.send('Hi');
+    }
+  </script>
+</body>
+
+</html>
